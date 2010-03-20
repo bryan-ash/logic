@@ -21,11 +21,11 @@ grammar Logic
   end
 
   rule and
-    S 'and' S <AndStatement>
+    S 'and' S <Gate>
   end
 
   rule or
-    S 'or' S <OrStatement>
+    S 'or' S <Gate>
   end
 
   rule s # Optional space

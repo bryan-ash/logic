@@ -1,34 +1,38 @@
-module Condition
+module LogicStatement
   
   def conditions
-    [text_value]
+    table = []
+    0.upto(2**condition_identifiers.length - 1) do |value|
+      table << ("%0#{condition_identifiers.length}b" % value).split(//).map(&:to_i)
+    end
+    table
   end
 
-  def truth_table
-    [[0,0], [1,1]]
+end
+
+module Condition
+
+  include LogicStatement
+  
+  def condition_identifiers
+    [text_value]
   end
 
 end
 
 module Decision
 
-  def conditions
-    elements.map(&:conditions).flatten
+  include LogicStatement
+  
+  def condition_identifiers
+    elements.map(&:condition_identifiers).flatten
   end
 
 end
 
-module AndStatement
+module Gate
   
-  def conditions
-    []
-  end
-
-end
-
-module OrStatement
-  
-  def conditions
+  def condition_identifiers
     []
   end
 

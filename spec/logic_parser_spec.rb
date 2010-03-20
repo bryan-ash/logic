@@ -10,11 +10,11 @@ describe LogicParser do
   describe "parsing a single condition" do
     
     it "identifies the condition" do
-      parser.parse("Hello").conditions.should == ["Hello"]
+      parser.parse("Hello").condition_identifiers.should == ["Hello"]
     end
 
-    it "truth_table is [0,0], [1,1]]" do
-      parser.parse("Hello").truth_table.should == [[0,0], [1,1]]
+    it "conditions is [0], [1]]" do
+      parser.parse("Hello").conditions.should == [[0], [1]]
     end
 
   end
@@ -22,7 +22,23 @@ describe LogicParser do
   describe "parsing 'A or B'" do
 
     it "conditions are ['A','B']" do
-      parser.parse('A or B').conditions.should == ['A','B']
+      parser.parse('A or B').condition_identifiers.should == ['A','B']
+    end
+
+    it "conditions is [[0,0],[0,1],[1,0],[1,1]]" do
+      parser.parse('A or B').conditions.should == [[0,0],[0,1],[1,0],[1,1]]
+    end
+
+  end
+
+  describe "parsing 'A and B'" do
+
+    it "conditions are ['A','B']" do
+      parser.parse('A and B').condition_identifiers.should == ['A','B']
+    end
+
+    it "conditions is [[0,0],[0,1],[1,0],[1,1]]" do
+      parser.parse('A and B').conditions.should == [[0,0],[0,1],[1,0],[1,1]]
     end
 
   end
