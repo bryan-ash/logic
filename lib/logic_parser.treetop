@@ -1,0 +1,11 @@
+grammar Logic
+
+  rule decision
+    condition <Decision>
+  end
+
+  rule condition
+    [\w]+
+  end
+
+end
