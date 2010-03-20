@@ -5,14 +5,18 @@ require 'logic_testing'
 
 describe LogicParser do
 
-  it "Identifies a single condition" do
-    parser = LogicParser.new
-    parser.parse("Hello").conditions.should == ["Hello"]
-  end
+  let(:parser) { LogicParser.new }
 
-  it "exists" do
-    parser = LogicParser.new
-    parser.parse("Hello").mcdc_cases.should == [[0], [1]]
-  end
+  describe "parsing a single condition" do
+    
+    it "identifies the condition" do
+      parser.parse("Hello").conditions.should == ["Hello"]
+    end
 
+    it "truth_table is [0,0], [1,1]]" do
+      parser.parse("Hello").truth_table.should == [[0,0], [1,1]]
+    end
+
+  end
+  
 end

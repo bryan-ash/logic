@@ -4,8 +4,8 @@ module Decision
     [text_value]
   end
 
-  def mcdc_cases
-    [[0], [1]]
+  def truth_table
+    [[0,0], [1,1]]
   end
 
 end
