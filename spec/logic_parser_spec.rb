@@ -27,12 +27,4 @@ describe LogicParser do
 
   end
 
-  describe "parsing 'A and B'" do
-
-    it "conditions are ['A','B']" do
-      parser.parse('A and B').conditions.should == ['A','B']
-    end
-
-  end
-
 end
