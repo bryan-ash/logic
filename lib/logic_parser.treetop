@@ -1,11 +1,41 @@
 grammar Logic
 
   rule decision
-    condition <Decision>
+    (or_statement
+    /
+     condition) <Decision>
+  end
+
+  rule or_statement
+    condition or condition {
+      def conditions
+        elements.map(&:conditions).flatten
+      end
+    }
   end
 
   rule condition
-    [\w]+
+    [A-Za-z]+ {
+      def conditions
+        [text_value]
+      end
+    }
   end
 
+  rule or
+    S 'or' S {
+      def conditions
+        []
+      end
+    }
+  end
+
+  rule s # Optional space
+    S?
+  end
+ 
+  rule S # Mandatory space
+    [ \t\n\r]+
+  end
+ 
 end
