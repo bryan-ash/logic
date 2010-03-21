@@ -15,7 +15,7 @@ describe LogicParser do
       decision.condition_identifiers.should == ['Hello']
     end
 
-    it "conditions is [0], [1]]" do
+    it "conditions is [[0], [1]]" do
       decision.conditions.should == [[0], [1]]
     end
 
