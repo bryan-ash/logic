@@ -3,29 +3,35 @@ grammar Logic
   rule decision
     and_statement
     /
-    or_statement
-    /
     condition
   end
 
   rule and_statement
-    condition and condition <Decision>
-  end
-
-  rule or_statement
-    condition or condition <Decision>
+    operand_1:condition S operator S operand_2:condition <Decision>
   end
 
   rule condition
     [A-Za-z]+ <Condition>
   end
 
+  rule operator
+    ( and / or ) <NonCondition>
+  end
+
   rule and
-    S 'and' S <Gate>
+    'and' {
+      def apply(a, b)
+        a & b
+      end
+    }
   end
 
   rule or
-    S 'or' S <Gate>
+    'or' {
+      def apply(a, b)
+        a | b
+      end
+    }
   end
 
   rule s # Optional space
@@ -33,7 +39,7 @@ grammar Logic
   end
  
   rule S # Mandatory space
-    [ \t\n\r]+
+    [ \t\n\r]+ <NonCondition>
   end
  
 end

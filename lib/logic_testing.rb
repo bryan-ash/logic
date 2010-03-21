@@ -18,6 +18,10 @@ module Condition
     [text_value]
   end
 
+  def evaluate(conditions = {})
+    conditions[text_value]
+  end
+
 end
 
 module Decision
@@ -28,9 +32,15 @@ module Decision
     elements.map(&:condition_identifiers).flatten
   end
 
+  def evaluate(conditions = {})
+    condition_1 = operand_1.evaluate(conditions)
+    condition_2 = operand_2.evaluate(conditions)
+    operator.apply(condition_1, condition_2)
+  end
+
 end
 
-module Gate
+module NonCondition
   
   def condition_identifiers
     []
