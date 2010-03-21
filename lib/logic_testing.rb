@@ -2,10 +2,14 @@ module LogicStatement
   
   def conditions
     table = []
-    0.upto(2**condition_identifiers.length - 1) do |value|
-      table << ("%0#{condition_identifiers.length}b" % value).split(//).map(&:to_i)
+    0.upto(2**condition_count - 1) do |value|
+      table << ("%0#{condition_count}b" % value).split(//).map(&:to_i)
     end
     table
+  end
+
+  def condition_count
+    condition_identifiers.length
   end
 
 end
@@ -16,6 +20,10 @@ module Condition
   
   def condition_identifiers
     [text_value]
+  end
+
+  def condition_count
+    condition_identifiers.length
   end
 
   def evaluate(conditions = {})
