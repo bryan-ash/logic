@@ -1,3 +1,5 @@
+require 'logic_testing'
+
 grammar Logic
 
   rule decision

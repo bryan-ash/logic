@@ -26,8 +26,8 @@ module Condition
     condition_identifiers.length
   end
 
-  def evaluate(conditions = {})
-    conditions[text_value]
+  def evaluate(conditions)
+    conditions[0]
   end
 
 end
@@ -40,9 +40,9 @@ module Decision
     elements.map(&:condition_identifiers).flatten
   end
 
-  def evaluate(conditions = {})
-    condition_1 = operand_1.evaluate(conditions)
-    condition_2 = operand_2.evaluate(conditions)
+  def evaluate(conditions)
+    condition_1 = operand_1.evaluate(conditions[0])
+    condition_2 = operand_2.evaluate(conditions[1])
     operator.apply(condition_1, condition_2)
   end
 

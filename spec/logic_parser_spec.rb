@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'treetop'
 require 'logic_parser'
-require 'logic_testing'
 
 describe LogicParser do
 
@@ -19,12 +18,12 @@ describe LogicParser do
       decision.conditions.should == [[0], [1]]
     end
 
-    it "'0' evaluates to '0'" do
-      decision.evaluate('Hello' => 0).should == 0
+    it "'[0]' evaluates to '0'" do
+      decision.evaluate([0]).should == 0
     end
 
-    it "'1' evaluates to '1'" do
-      decision.evaluate('Hello' => 1).should == 1
+    it "'[1]' evaluates to '1'" do
+      decision.evaluate([1]).should == 1
     end
 
   end
@@ -41,20 +40,20 @@ describe LogicParser do
       decision.conditions.should == [[0,0],[0,1],[1,0],[1,1]]
     end
 
-    it "'0 or 0' evaluates to '0'" do
-      decision.evaluate('A' => 0, 'B' => 0).should == 0
+    it "'[0, 0]' evaluates to '0'" do
+      decision.evaluate([0, 0]).should == 0
     end
 
-    it "'0 or 1' evaluates to '1'" do
-      decision.evaluate('A' => 0, 'B' => 1).should == 1
+    it "'[0, 1]' evaluates to '1'" do
+      decision.evaluate([0, 1]).should == 1
     end
 
-    it "'1 or 0' evaluates to '1'" do
-      decision.evaluate('A' => 1, 'B' => 0).should == 1
+    it "'[1, 0]' evaluates to '1'" do
+      decision.evaluate([1, 0]).should == 1
     end
 
-    it "'1 or 1' evaluates to '1'" do
-      decision.evaluate('A' => 1, 'B' => 1).should == 1
+    it "'[1, 1]' evaluates to '1'" do
+      decision.evaluate([1, 1]).should == 1
     end
 
   end
@@ -71,20 +70,20 @@ describe LogicParser do
       decision.conditions.should == [[0,0],[0,1],[1,0],[1,1]]
     end
 
-    it "'0 and 0' evaluates to '0'" do
-      decision.evaluate('A' => 0, 'B' => 0).should == 0
+    it "'[0, 0]' evaluates to '0'" do
+      decision.evaluate([0, 0]).should == 0
     end
 
-    it "'0 and 1' evaluates to '0'" do
-      decision.evaluate('A' => 0, 'B' => 1).should == 0
+    it "'[0, 1]' evaluates to '0'" do
+      decision.evaluate([0, 1]).should == 0
     end
 
-    it "'1 and 0' evaluates to '0'" do
-      decision.evaluate('A' => 1, 'B' => 0).should == 0
+    it "'[1, 0]' evaluates to '0'" do
+      decision.evaluate([1, 0]).should == 0
     end
 
-    it "'1 and 1' evaluates to '1'" do
-      decision.evaluate('A' => 1, 'B' => 1).should == 1
+    it "'[1, 1]' evaluates to '1'" do
+      decision.evaluate([1, 1]).should == 1
     end
 
   end
