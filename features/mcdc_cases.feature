@@ -5,7 +5,7 @@ Feature: MC/DC Cases
   I want to see the MC/DC test cases
 
   Scenario: a single condition
-    When I run mcdc_cases 'a'
+    When I run logic mcdc_cases 'a'
     Then I should see:
       """
       a | output | covers

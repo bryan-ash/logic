@@ -5,7 +5,7 @@ Feature: Truth Table
   I want to see the truth table
 
   Scenario: a single condition
-    When I run truth_table 'a'
+    When I run logic truth_table 'a'
     Then I should see:
       """
           a | output
@@ -14,7 +14,7 @@ Feature: Truth Table
       """
 
   Scenario: 'a or b' decision
-    When I run truth_table 'a or b'
+    When I run logic truth_table 'a or b'
     Then I should see:
       """
           a b | output
