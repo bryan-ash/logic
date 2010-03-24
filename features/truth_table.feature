@@ -8,18 +8,18 @@ Feature: Truth Table
     When I run truth_table 'a'
     Then I should see:
       """
-      a | output
-      0 |   0
-      1 |   1
+          a | output
+       1) 0 |   0
+       2) 1 |   1
       """
 
   Scenario: 'a or b' decision
     When I run truth_table 'a or b'
     Then I should see:
       """
-      a b | output
-      0 0 |   0
-      0 1 |   1
-      1 0 |   1
-      1 1 |   1
+          a b | output
+       1) 0 0 |   0
+       2) 0 1 |   1
+       3) 1 0 |   1
+       4) 1 1 |   1
       """
