@@ -8,7 +8,18 @@ Feature: MC/DC Cases
     When I run logic mcdc_cases 'a'
     Then I should see:
       """
-      a | output | covers
-      0 |   0    | a
-      1 |   1    | a
+
+      MC/DC Cases:
+      a => [[1, 2]]
+      """
+
+  @failing
+  Scenario: 'a and b' decision
+    When I run logic mcdc_cases 'a and b'
+    Then I should see:
+      """
+
+      MC/DC Cases:
+      a => [[2, 4]]
+      b => [[3, 4]]
       """
