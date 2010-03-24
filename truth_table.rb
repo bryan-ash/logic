@@ -9,6 +9,6 @@ logic = parser.parse ARGV[0]
 
 puts "#{logic.condition_identifiers.join(" ")} | output"
 logic.conditions.each do |condition_row|
-  puts "#{condition_row.join(' ')} | #{logic.evaluate(condition_row)}"
+  puts "#{condition_row.join(' ')} | #{logic.evaluate(condition_row).to_s.rjust(3)}"
 end
 
