@@ -1,5 +1,9 @@
 module LogicStatement
-  
+
+  def truth_table
+    TruthTable.new(self)
+  end
+
   def conditions
     table = []
     0.upto(2**condition_count - 1) do |value|
@@ -20,10 +24,6 @@ module Condition
   
   def condition_identifiers
     [text_value]
-  end
-
-  def condition_count
-    condition_identifiers.length
   end
 
   def evaluate(conditions)
