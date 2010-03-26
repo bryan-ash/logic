@@ -4,4 +4,4 @@ $LOAD_PATH.unshift("#{APP_PATH}/lib")
 
 require 'aruba'
 require 'fileutils'
-require 'rspec/expectations'
+require 'spec/expectations'

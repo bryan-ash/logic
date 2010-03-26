@@ -1,19 +1,27 @@
+require 'integer'
+require 'test_case'
+require 'truth_table'
+
 module LogicStatement
 
   def truth_table
-    TruthTable.new(self)
+    TruthTable.new(condition_identifiers, test_cases)
+  end
+
+  def test_cases
+    conditions.inject([]) do |cases, condition|
+      cases << TestCase.new(cases.count + 1, condition, evaluate(condition))
+    end
   end
 
   def conditions
-    table = []
-    0.upto(2**condition_count - 1) do |value|
-      table << ("%0#{condition_count}b" % value).split(//).map(&:to_i)
+    (0..(2**condition_count - 1)).map do |value|
+      value.to_array_of_bits(condition_count)
     end
-    table
   end
 
   def condition_count
-    condition_identifiers.length
+    condition_identifiers.count
   end
 
 end

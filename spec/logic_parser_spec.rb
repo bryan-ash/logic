@@ -26,6 +26,16 @@ describe LogicParser do
       decision.evaluate([1]).should == 1
     end
 
+    it "creates 2 test cases" do
+      case1 = mock('case1')
+      case2 = mock('case2')
+      
+      TestCase.should_receive(:new).with(1, [0], 0).and_return(case1)
+      TestCase.should_receive(:new).with(2, [1], 1).and_return(case2)
+
+      decision.test_cases.should include case1
+    end
+
   end
 
   describe "parsing 'A or B'" do

@@ -1,25 +1,17 @@
 class TruthTable
 
-  def initialize(logic)
-    @logic = logic
+  def initialize(condition_identifiers, test_cases)
+    @condition_identifiers = condition_identifiers
+    @test_cases = test_cases
   end
 
   def to_s
-    output = header
-    @logic.conditions.each_with_index do |condition_row, index|
-      output = output + "\n#{test_number(index + 1)}) #{condition_row.join(' ')} " +
-        "| #{@logic.evaluate(condition_row).to_s.rjust(3)}"
-    end
-    output
+    header + @test_cases.map(&:to_s).join("\n")
   end
 
   def header
-    conditions = @logic.condition_identifiers.join(" ")
-    "#{conditions.rjust(conditions.length + 4)} | output"    
-  end
-
-  def test_number(number)
-    number.to_s.rjust(2)
+    conditions = @condition_identifiers.join(" ")
+    "#{conditions.rjust(conditions.length + 4)} | output\n"    
   end
 
 end
