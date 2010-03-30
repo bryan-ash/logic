@@ -15,8 +15,8 @@ describe LogicParser do
       decision.condition_identifiers.should == ['Hello']
     end
 
-    it "conditions is [[0], [1]]" do
-      decision.conditions.should == [[0], [1]]
+    it "has 1 condition" do
+      decision.condition_count.should == 1
     end
 
     it "'[0]' evaluates to '0'" do
@@ -25,16 +25,6 @@ describe LogicParser do
 
     it "'[1]' evaluates to '1'" do
       decision.evaluate([1]).should == 1
-    end
-
-    it "creates 2 test cases" do
-      case1 = mock('case1')
-      case2 = mock('case2')
-      
-      TestCase.should_receive(:new).with(1, [0], 0).and_return(case1)
-      TestCase.should_receive(:new).with(2, [1], 1).and_return(case2)
-
-      decision.test_cases.should include case1
     end
 
   end
@@ -47,8 +37,8 @@ describe LogicParser do
       decision.condition_identifiers.should == ['A','B']
     end
 
-    it "conditions is [[0,0],[0,1],[1,0],[1,1]]" do
-      decision.conditions.should == [[0,0],[0,1],[1,0],[1,1]]
+    it "has 2 conditions" do
+      decision.condition_count.should == 2
     end
 
     it "'[0, 0]' evaluates to '0'" do
@@ -77,8 +67,8 @@ describe LogicParser do
       decision.condition_identifiers.should == ['A','B']
     end
 
-    it "conditions is [[0,0],[0,1],[1,0],[1,1]]" do
-      decision.conditions.should == [[0,0],[0,1],[1,0],[1,1]]
+    it "has 2 conditions" do
+      decision.condition_count.should == 2
     end
 
     it "'[0, 0]' evaluates to '0'" do
