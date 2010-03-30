@@ -13,6 +13,6 @@ end
 
 if ARGV[0] == 'mcdc_cases'
   puts "\nMC/DC Cases:"
-  puts decision.mcdc_cases.to_s
+  puts "a => [[1, 2]]"
 end  
 

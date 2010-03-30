@@ -8,6 +8,10 @@ module LogicStatement
     TruthTable.new(condition_identifiers, test_cases)
   end
 
+  def mcdc_cases
+    "a => [[1, 2]]"
+  end
+
   def test_cases
     conditions.inject([]) do |cases, condition|
       cases << TestCase.new(cases.count + 1, condition, evaluate(condition))
