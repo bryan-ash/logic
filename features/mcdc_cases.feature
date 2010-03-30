@@ -8,8 +8,6 @@ Feature: MC/DC Cases
     When I run logic mcdc_cases 'a'
     Then I should see:
       """
-
-      MC/DC Cases:
       a => [[1, 2]]
       """
 
@@ -18,8 +16,6 @@ Feature: MC/DC Cases
     When I run logic mcdc_cases 'a and b'
     Then I should see:
       """
-
-      MC/DC Cases:
       a => [[2, 4]]
       b => [[3, 4]]
       """
