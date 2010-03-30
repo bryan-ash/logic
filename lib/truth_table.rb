@@ -2,9 +2,9 @@ require 'integer'
 
 class TruthTable
 
-  def initialize(condition_count, &evaluate)
+  def initialize(condition_count, &decision)
     @condition_count = condition_count
-    @evaluate = evaluate
+    @decision = decision
   end
 
   def condition_identifiers
@@ -34,7 +34,7 @@ class TruthTable
     number = 0
     cases.inject("") do |output, conditions|
       number += 1
-      output += "#{number.to_s.rjust(2)}) #{conditions.join(' ')} | #{@evaluate.call(conditions).to_s.rjust(3)}\n"
+      output += "#{number.to_s.rjust(2)}) #{conditions.join(' ')} | #{@decision.call(conditions).to_s.rjust(3)}\n"
     end
   end
 
