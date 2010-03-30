@@ -7,8 +7,9 @@ require 'logic_parser'
 parser = LogicParser.new
 decision = parser.parse ARGV[1]
 
-truth_table = decision.truth_table
-puts truth_table.to_s
+if ARGV[0] == 'truth_table'
+  puts decision.truth_table.to_s
+end
 
 if ARGV[0] == 'mcdc_cases'
   puts "\nMC/DC Cases:"
