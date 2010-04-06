@@ -25,7 +25,7 @@ class TestCase
     value.to_array_of_bits(condition_count)
   end
 
-  def evaluate
+  def output
     @decision.call(@conditions)
   end
 
@@ -40,7 +40,7 @@ class TestCase
 
   def is_mcdc_case_for_index?(index)
     modified_case = negate_condition_at_index(index)
-    modified_case.evaluate != evaluate
+    modified_case.output != output
   end
 
 end

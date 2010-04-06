@@ -49,7 +49,7 @@ class TruthTable
 
   def formatted_cases
     cases.inject("") do |output, test_case|
-      output += "#{test_case.number.to_s.rjust(2)}) #{test_case.conditions.join(' ')} | #{test_case.evaluate.to_s.rjust(3)}\n"
+      output += "#{test_case.number.to_s.rjust(2)}) #{test_case.conditions.join(' ')} | #{test_case.output.to_s.rjust(3)}\n"
     end
   end
 
