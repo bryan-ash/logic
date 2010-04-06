@@ -19,14 +19,6 @@ describe LogicParser do
       decision.condition_count.should == 1
     end
 
-    it "'[0]' evaluates to '0'" do
-      decision.evaluate([0]).should == 0
-    end
-
-    it "'[1]' evaluates to '1'" do
-      decision.evaluate([1]).should == 1
-    end
-
   end
 
   describe "parsing 'A or B'" do
@@ -39,22 +31,6 @@ describe LogicParser do
 
     it "has 2 conditions" do
       decision.condition_count.should == 2
-    end
-
-    it "'[0, 0]' evaluates to '0'" do
-      decision.evaluate([0, 0]).should == 0
-    end
-
-    it "'[0, 1]' evaluates to '1'" do
-      decision.evaluate([0, 1]).should == 1
-    end
-
-    it "'[1, 0]' evaluates to '1'" do
-      decision.evaluate([1, 0]).should == 1
-    end
-
-    it "'[1, 1]' evaluates to '1'" do
-      decision.evaluate([1, 1]).should == 1
     end
 
   end
@@ -71,14 +47,6 @@ describe LogicParser do
       decision.condition_count.should == 3
     end
 
-    it "'[0, 0, 0]' evaluates to '0'" do
-      decision.evaluate([0, 0, 0]).should == 0
-    end
-
-    it "'[0, 1, 0]' evaluates to '1'" do
-      decision.evaluate([0, 1, 0]).should == 1
-    end
-
   end
 
   describe "parsing 'A and B'" do
@@ -91,22 +59,6 @@ describe LogicParser do
 
     it "has 2 conditions" do
       decision.condition_count.should == 2
-    end
-
-    it "'[0, 0]' evaluates to '0'" do
-      decision.evaluate([0, 0]).should == 0
-    end
-
-    it "'[0, 1]' evaluates to '0'" do
-      decision.evaluate([0, 1]).should == 0
-    end
-
-    it "'[1, 0]' evaluates to '0'" do
-      decision.evaluate([1, 0]).should == 0
-    end
-
-    it "'[1, 1]' evaluates to '1'" do
-      decision.evaluate([1, 1]).should == 1
     end
 
   end
@@ -123,16 +75,56 @@ describe LogicParser do
       decision.condition_count.should == 3
     end
 
-    it "'[0, 0, 0]' evaluates to '0'" do
-      decision.evaluate([0, 0, 0]).should == 0
-    end
+  end
 
-    it "'[0, 1, 0]' evaluates to '0'" do
-      decision.evaluate([0, 1, 0]).should == 0
-    end
+  { 'Hello' =>
+    { [0] => 0,
+      [1] => 1
+    },
+    'A or B' =>
+    { [0, 0] => 0,
+      [0, 1] => 1,
+      [1, 0] => 1
+    },
+    'A and B' =>
+    { [1, 1] => 1,
+      [0, 1] => 0,
+      [1, 0] => 0
+    },
+    'A or B or C' =>
+    { [0, 0, 0] => 0,
+      [1, 0, 0] => 1,
+      [0, 1, 0] => 1,
+      [0, 0, 1] => 1
+    },
+    'A and B and C' =>
+    { [1, 1, 1] => 1,
+      [0, 1, 1] => 0,
+      [1, 0, 1] => 0,
+      [1, 1, 0] => 0
+    },
+    '(A and B) or C' =>
+    { [1, 1, 0] => 1,
+      [0, 1, 0] => 0,
+      [1, 0, 0] => 0,
+      [0, 0, 1] => 1
+    },
+    'A and (B or C)' =>
+    { [1, 0, 0] => 0,
+      [1, 1, 0] => 1,
+      [1, 0, 1] => 1,
+      [0, 1, 1] => 0
+    }
+  }.each do |logic, cases|
+    describe "parsing '#{logic}'" do
 
-    it "'[1, 1, 1]' evaluates to '1'" do
-      decision.evaluate([1, 1, 1]).should == 1
+      let(:decision) { parser.parse(logic) }
+
+      cases.each do |conditions, result|
+        it "'#{conditions}' evaluates to '#{result}'" do
+          decision.evaluate(conditions).should == result
+        end
+      end
     end
 
   end

@@ -25,7 +25,7 @@ module Condition
   end
 
   def evaluate(conditions)
-    conditions[0]
+    conditions.shift
   end
 
 end
@@ -39,11 +39,25 @@ module Decision
   end
 
   def evaluate(conditions)
-    condition_1 = operand_1.evaluate(conditions[0])
-    condition_2 = operand_2.evaluate(conditions[1..-1])
+    condition_1 = operand_1.evaluate(conditions)
+    condition_2 = operand_2.evaluate(conditions)
     operator.apply(condition_1, condition_2)
   end
 
+end
+
+module Parenthesized
+
+  include LogicStatement
+
+  def condition_identifiers
+    binary_condition.condition_identifiers
+  end
+
+  def evaluate(conditions)
+    binary_condition.evaluate(conditions)
+  end
+  
 end
 
 module NonCondition

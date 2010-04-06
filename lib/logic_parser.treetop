@@ -7,11 +7,21 @@ grammar Logic
   end
 
   rule binary_condition
-    operand_1:condition S operator S operand_2:decision <Decision>
+    operand_1:condition S operator S operand_2:decision <Decision>  
   end
 
   rule condition
+    parenthesized
+    /
+    variable
+  end
+
+  rule variable
     [A-Za-z]+ <Condition>
+  end
+
+  rule parenthesized
+    '(' binary_condition ')' <Parenthesized>
   end
 
   rule operator
