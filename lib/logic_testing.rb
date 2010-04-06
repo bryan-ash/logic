@@ -6,6 +6,10 @@ module LogicStatement
     TruthTable.new(condition_count) { |conditions| evaluate(conditions) }
   end
 
+  def mcdc_pairs
+    truth_table.mcdc_pairs
+  end
+
   def mcdc_cases
     truth_table.mcdc_cases
   end

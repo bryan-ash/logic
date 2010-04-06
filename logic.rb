@@ -13,7 +13,7 @@ if ARGV[0] == 'truth_table'
 end
 
 if ARGV[0] == 'mcdc_pairs'
-  puts decision.mcdc_cases
+  puts decision.mcdc_pairs
 end  
 
 if ARGV[0] == 'mcdc_cases'

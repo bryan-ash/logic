@@ -2,12 +2,9 @@ require 'integer'
 
 class TestCase
 
-  attr_reader :conditions
-  attr_reader :number
-  
   def initialize(number, condition_count, decision)
-    @number = number
-    @conditions = create_conditions(condition_count)
+    @condition_value = number - 1
+    @condition_count = condition_count
     @decision = decision
   end
 
@@ -16,13 +13,21 @@ class TestCase
     @conditions = conditions.dup
   end
 
-  def create_conditions(condition_count)
-    value = number - 1
-    value.to_array_of_bits(condition_count)
+  def conditions
+    @conditions ||= (@condition_value).to_array_of_bits(@condition_count)
+  end
+
+  def number
+    conditions.join.to_i(base = 2) + 1
   end
 
   def output
-    @decision.call(@conditions)
+    @decision.call(conditions.dup)
+  end
+
+  def mcdc_pair(index)
+    modified_case = negate_condition_at_index(index)
+    [number, modified_case.number].sort
   end
 
   def is_mcdc_case_for_index?(index)
@@ -35,7 +40,7 @@ class TestCase
   end
 
   def negate_condition_at_index!(index)
-    @conditions[index] = @conditions[index].negate
+    conditions[index] = conditions[index].negate
     self
   end
 
