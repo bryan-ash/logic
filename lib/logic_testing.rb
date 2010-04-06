@@ -7,7 +7,7 @@ module LogicStatement
   end
 
   def mcdc_cases
-    "a => [[1, 2]]"
+    truth_table.mcdc_cases
   end
 
   def condition_count

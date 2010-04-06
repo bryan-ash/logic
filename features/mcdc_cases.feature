@@ -8,14 +8,21 @@ Feature: MC/DC Cases
     When I run logic mcdc_cases 'a'
     Then I should see:
       """
-      a => [[1, 2]]
+      a => [1, 2]
       """
 
-  @failing
   Scenario: 'a and b' decision
     When I run logic mcdc_cases 'a and b'
     Then I should see:
       """
-      a => [[2, 4]]
-      b => [[3, 4]]
+      a => [2, 4]
+      b => [3, 4]
+      """
+
+  Scenario: 'a or b' decision
+    When I run logic mcdc_cases 'a or b'
+    Then I should see:
+      """
+      a => [1, 3]
+      b => [1, 2]
       """

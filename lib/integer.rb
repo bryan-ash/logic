@@ -4,4 +4,8 @@ class Integer
     ("%0#{width}b" % self).split(//).map(&:to_i)
   end
 
+  def negate
+    self + 1 & 1
+  end
+
 end

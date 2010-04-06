@@ -17,6 +17,29 @@ class TruthTable
     end
   end
 
+  def mcdc_cases
+    condition_identifiers.map do |condition_identifier|
+      "#{condition_identifier} => #{mcdc_cases_for(condition_identifier)}"
+    end
+  end
+
+  def mcdc_cases_for(condition_identifier)
+    number = 0
+    cases.inject([]) do |mcdc_cases, test_case|
+      number += 1
+      modified_case = test_case.dup
+      modified_case[index_of(condition_identifier)] = modified_case[index_of(condition_identifier)].negate
+      modified_output = @decision.call(modified_case)
+      output = @decision.call(test_case)
+      mcdc_cases << number if modified_output != output
+      mcdc_cases
+    end
+  end
+
+  def index_of(condition_identifier)
+    ('a'..'z').to_a.index(condition_identifier)
+  end
+
   def max_coded_case
     2**@condition_count - 1
   end
