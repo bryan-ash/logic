@@ -12,6 +12,10 @@ if ARGV[0] == 'truth_table'
   puts decision.truth_table
 end
 
+if ARGV[0] == 'mcdc_pairs'
+  puts decision.mcdc_cases
+end  
+
 if ARGV[0] == 'mcdc_cases'
   puts decision.mcdc_cases
 end  
