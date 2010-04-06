@@ -7,9 +7,8 @@ class TestCase
   
   def initialize(number, condition_count, decision)
     @number = number
-    @condition_count = condition_count
-    @decision = decision
     @conditions = create_conditions(condition_count)
+    @decision = decision
   end
 
   def initialize_copy(source)
