@@ -1,0 +1,42 @@
+= logic
+
+== Usage
+
+Truth tables are easy:
+
+  logic truth_table '(a or b) and (c or d)'
+
+Gives you:
+
+      a b c d | output
+   1) 0 0 0 0 |   0
+   2) 0 0 0 1 |   0
+   3) 0 0 1 0 |   0
+   4) 0 0 1 1 |   0
+   5) 0 1 0 0 |   0
+   6) 0 1 0 1 |   1
+   7) 0 1 1 0 |   1
+   8) 0 1 1 1 |   1
+   9) 1 0 0 0 |   0
+  10) 1 0 0 1 |   1
+  11) 1 0 1 0 |   1
+  12) 1 0 1 1 |   1
+  13) 1 1 0 0 |   0
+  14) 1 1 0 1 |   1
+  15) 1 1 1 0 |   1
+  16) 1 1 1 1 |   1
+
+MC/DC cases can also be found:
+
+  logic mcdc_cases '(a or b) and (c or d)'
+
+Gives you:
+
+  a => [2, 3, 4, 10, 11, 12]
+  b => [2, 3, 4, 6, 7, 8]
+  c => [5, 7, 9, 11, 13, 15]
+  d => [5, 6, 9, 10, 13, 14]
+
+== Copyright
+
+Copyright (c) 2010 Bryan Ash. See LICENSE for details.
