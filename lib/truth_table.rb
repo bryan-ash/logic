@@ -1,4 +1,3 @@
-require 'integer'
 require 'test_case'
 
 class TruthTable
@@ -14,7 +13,7 @@ class TruthTable
 
   def cases
     case_numbers.map do |case_number|
-      TestCase.new(case_number, @condition_count)
+      TestCase.new(case_number, @condition_count, @decision)
     end
   end
 
@@ -30,7 +29,7 @@ class TruthTable
 
   def mcdc_cases_for(condition_identifier)
     cases.inject([]) do |mcdc_cases, test_case|
-      mcdc_cases << test_case.number if test_case.is_mcdc_case_for_index(index_of(condition_identifier), @decision)
+      mcdc_cases << test_case.number if test_case.is_mcdc_case_for_index?(index_of(condition_identifier))
       mcdc_cases
     end
   end
@@ -50,7 +49,7 @@ class TruthTable
 
   def formatted_cases
     cases.inject("") do |output, test_case|
-      output += "#{test_case.number.to_s.rjust(2)}) #{test_case.conditions.join(' ')} | #{test_case.evaluate(@decision).to_s.rjust(3)}\n"
+      output += "#{test_case.number.to_s.rjust(2)}) #{test_case.conditions.join(' ')} | #{test_case.evaluate.to_s.rjust(3)}\n"
     end
   end
 

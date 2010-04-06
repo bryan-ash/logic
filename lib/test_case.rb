@@ -4,9 +4,10 @@ class TestCase
 
   attr_reader :number
   
-  def initialize(number, condition_count)
+  def initialize(number, condition_count, decision)
     @number = number
     @condition_count = condition_count
+    @decision = decision
     @conditions = create_conditions(condition_count)
   end
 
@@ -24,8 +25,8 @@ class TestCase
     value.to_array_of_bits(condition_count)
   end
 
-  def evaluate(decision)
-    decision.call(@conditions)
+  def evaluate
+    @decision.call(@conditions)
   end
 
   def negate_condition_at_index!(index)
@@ -37,9 +38,9 @@ class TestCase
     dup.negate_condition_at_index!(index)
   end
 
-  def is_mcdc_case_for_index(index, decision)
+  def is_mcdc_case_for_index?(index)
     modified_case = negate_condition_at_index(index)
-    modified_case.evaluate(decision) != evaluate(decision)
+    modified_case.evaluate != evaluate
   end
 
 end
