@@ -59,6 +59,28 @@ describe LogicParser do
 
   end
 
+  describe "parsing 'A or B or C'" do
+
+    let(:decision) { parser.parse('A or B or C') }
+    
+    it "condition identifiers are ['A','B','C']" do
+      decision.condition_identifiers.should == ['A','B', 'C']
+    end
+
+    it "has 3 conditions" do
+      decision.condition_count.should == 3
+    end
+
+    it "'[0, 0, 0]' evaluates to '0'" do
+      decision.evaluate([0, 0, 0]).should == 0
+    end
+
+    it "'[0, 1, 0]' evaluates to '1'" do
+      decision.evaluate([0, 1, 0]).should == 1
+    end
+
+  end
+
   describe "parsing 'A and B'" do
 
     let(:decision) { parser.parse('A and B') }
@@ -85,6 +107,32 @@ describe LogicParser do
 
     it "'[1, 1]' evaluates to '1'" do
       decision.evaluate([1, 1]).should == 1
+    end
+
+  end
+
+  describe "parsing 'A and B and C'" do
+
+    let(:decision) { parser.parse('A and B and C') }
+    
+    it "condition identifiers are ['A','B','C']" do
+      decision.condition_identifiers.should == ['A','B', 'C']
+    end
+
+    it "has 3 conditions" do
+      decision.condition_count.should == 3
+    end
+
+    it "'[0, 0, 0]' evaluates to '0'" do
+      decision.evaluate([0, 0, 0]).should == 0
+    end
+
+    it "'[0, 1, 0]' evaluates to '0'" do
+      decision.evaluate([0, 1, 0]).should == 0
+    end
+
+    it "'[1, 1, 1]' evaluates to '1'" do
+      decision.evaluate([1, 1, 1]).should == 1
     end
 
   end

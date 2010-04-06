@@ -1,13 +1,13 @@
 grammar Logic
 
   rule decision
-    and_statement
+    binary_condition
     /
     condition
   end
 
-  rule and_statement
-    operand_1:condition S operator S operand_2:condition <Decision>
+  rule binary_condition
+    operand_1:condition S operator S operand_2:decision <Decision>
   end
 
   rule condition
