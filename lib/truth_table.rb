@@ -1,4 +1,5 @@
 require 'integer'
+require 'test_case'
 
 class TruthTable
 
@@ -8,13 +9,17 @@ class TruthTable
   end
 
   def condition_identifiers
-    ('a'..'z').take(@condition_count)
+    identifier_range.take(@condition_count)
   end
 
   def cases
-    (0..max_coded_case).map do |value|
-      value.to_array_of_bits(@condition_count)
+    case_numbers.map do |case_number|
+      TestCase.new(case_number, @condition_count)
     end
+  end
+
+  def case_numbers
+    1..2**@condition_count
   end
 
   def mcdc_cases
@@ -24,24 +29,14 @@ class TruthTable
   end
 
   def mcdc_cases_for(condition_identifier)
-    number = 0
     cases.inject([]) do |mcdc_cases, test_case|
-      number += 1
-      modified_case = test_case.dup
-      modified_case[index_of(condition_identifier)] = modified_case[index_of(condition_identifier)].negate
-      modified_output = @decision.call(modified_case)
-      output = @decision.call(test_case)
-      mcdc_cases << number if modified_output != output
+      mcdc_cases << test_case.number if test_case.is_mcdc_case_for_index(index_of(condition_identifier), @decision)
       mcdc_cases
     end
   end
 
   def index_of(condition_identifier)
-    ('a'..'z').to_a.index(condition_identifier)
-  end
-
-  def max_coded_case
-    2**@condition_count - 1
+    identifier_range.to_a.index(condition_identifier)
   end
 
   def to_s
@@ -54,11 +49,13 @@ class TruthTable
   end
 
   def formatted_cases
-    number = 0
-    cases.inject("") do |output, conditions|
-      number += 1
-      output += "#{number.to_s.rjust(2)}) #{conditions.join(' ')} | #{@decision.call(conditions).to_s.rjust(3)}\n"
+    cases.inject("") do |output, test_case|
+      output += "#{test_case.number.to_s.rjust(2)}) #{test_case.conditions.join(' ')} | #{test_case.evaluate(@decision).to_s.rjust(3)}\n"
     end
+  end
+
+  def identifier_range
+    'a'..'z'
   end
 
 end

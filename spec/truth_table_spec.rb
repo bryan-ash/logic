@@ -16,12 +16,8 @@ describe TruthTable do
 
     describe :cases do
 
-      it "includes [0]" do
-        table.cases.should include([0])
-      end
-
-      it "includes [1]" do
-        table.cases.should include([1])
+      it "has 2 cases" do
+        table.cases.length.should == 2
       end
 
     end
