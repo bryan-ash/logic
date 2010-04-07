@@ -1,9 +1,7 @@
 grammar Logic
 
   rule decision
-    binary_condition <Decision>
-    / 
-    condition
+    binary_condition / condition
   end
 
   rule binary_condition
