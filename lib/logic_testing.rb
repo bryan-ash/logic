@@ -10,10 +10,6 @@ module LogicStatement
     truth_table.mcdc_pairs
   end
 
-  def mcdc_cases
-    truth_table.mcdc_cases
-  end
-
   def condition_count
     condition_identifiers.count
   end

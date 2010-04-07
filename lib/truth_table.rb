@@ -27,25 +27,12 @@ class TruthTable
     end
   end
 
-  def mcdc_cases
-    condition_identifiers.map do |condition_identifier|
-      "#{condition_identifier} => #{mcdc_cases_for(condition_identifier)}"
-    end
-  end
-
   def mcdc_pairs_for(condition_identifier)
     cases.inject([]) do |mcdc_cases, test_case|
       mcdc_pair = test_case.mcdc_pair(index_of(condition_identifier))
       mcdc_cases << mcdc_pair if test_case.is_mcdc_case_for_index?(index_of(condition_identifier))
       mcdc_cases
     end.uniq
-  end
-
-  def mcdc_cases_for(condition_identifier)
-    cases.inject([]) do |mcdc_cases, test_case|
-      mcdc_cases << test_case.number if test_case.is_mcdc_case_for_index?(index_of(condition_identifier))
-      mcdc_cases
-    end
   end
 
   def index_of(condition_identifier)
