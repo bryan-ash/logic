@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__) + "/lib")
 require 'rubygems'
 require 'treetop'
 require 'logic_parser'
-require 'logic_testing'
+require 'logic_operations'
 
 parser = LogicParser.new
 decision = parser.parse ARGV[1]

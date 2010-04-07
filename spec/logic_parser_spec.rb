@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'treetop'
 require 'logic_parser'
-require 'logic_testing'
+require 'logic_operations'
 
 describe LogicParser do
 
