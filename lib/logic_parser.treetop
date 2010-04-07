@@ -1,8 +1,8 @@
 grammar Logic
 
   rule decision
-    binary_condition
-    /
+    binary_condition <Decision>
+    / 
     condition
   end
 
@@ -11,9 +11,7 @@ grammar Logic
   end
 
   rule condition
-    parenthesized
-    /
-    variable
+    parenthesized / variable
   end
 
   rule variable
