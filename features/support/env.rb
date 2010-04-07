@@ -1,4 +1,4 @@
-APP_PATH = File.expand_path(File.dirname(__FILE__) + '/../..')
+APP_PATH = File.expand_path(File.dirname(__FILE__) + '/../../bin/')
 
 $LOAD_PATH.unshift("#{APP_PATH}/lib")
 
