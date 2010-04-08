@@ -1,6 +1,8 @@
+require 'rake'
+
 Gem::Specification.new do |s|
   s.name = %q{logic}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bryan Ash"]
@@ -9,33 +11,8 @@ Gem::Specification.new do |s|
   s.description = %q{Produces truth table and MC/DC test case pairs from parsed logic statement}
   s.email = %q{}
   s.executables = ["logic"]
-  s.extra_rdoc_files = [
-    "LICENSE",
-     "README.rdoc"
-  ]
-  s.files = [
-    "bin",
-    "bin/logic",
-    "features",
-    "features/mcdc_pairs.feature",
-    "features/step_definitions",
-    "features/step_definitions/logic_testing_steps.rb",
-    "features/support",
-    "features/support/env.rb",
-    "features/truth_table.feature",
-    "lib",
-    "lib/integer.rb",
-    "lib/logic_operations.rb",
-    "lib/logic_parser.treetop",
-    "lib/test_case.rb",
-    "lib/truth_table.rb",
-    "LICENSE",
-    "README.rdoc",
-    "spec",
-    "spec/logic_parser_spec.rb",
-    "spec/spec.opts",
-    "spec/truth_table_spec.rb"
-  ]
+  s.extra_rdoc_files = [ "LICENSE", "README.rdoc" ]
+  s.files = FileList['lib/**/*.rb', 'lib/**/*.treetop', 'bin/*', '[A-Z].*', 'feature/**/*', 'spec/**/*'].to_a
   s.homepage = %q{http://github.com/bryan-ash/logic}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
