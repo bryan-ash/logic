@@ -1,6 +1,6 @@
+require 'integer'
 require 'range'
 require 'symbol'
-require 'integer'
 
 class TestCase
 
@@ -24,7 +24,7 @@ class TestCase
   end
 
   def output
-    @decision.call(conditions.dup)
+    @decision.evaluate(conditions.dup)
   end
 
   def mcdc_pair(index)

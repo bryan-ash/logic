@@ -1,14 +1,19 @@
 require 'array'
+require 'test_case_set'
 require 'truth_table'
 
 module LogicStatement
 
+  def test_cases
+    @test_cases ||= TestCaseSet.new(condition_count, self)
+  end
+
   def truth_table
-    TruthTable.new(condition_count) { |conditions| evaluate(conditions) }
+    TruthTable.new(test_cases)
   end
 
   def mcdc_pairs
-    truth_table.mcdc_pairs
+    test_cases.mcdc_pairs
   end
 
   def condition_count
