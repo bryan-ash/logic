@@ -1,3 +1,5 @@
+require 'range'
+require 'symbol'
 require 'integer'
 
 class TestCase

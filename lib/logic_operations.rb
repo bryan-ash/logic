@@ -1,3 +1,4 @@
+require 'array'
 require 'truth_table'
 
 module LogicStatement
