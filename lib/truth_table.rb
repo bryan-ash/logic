@@ -23,7 +23,7 @@ class TruthTable
 
   def mcdc_pairs
     condition_identifiers.map do |condition_identifier|
-      "#{condition_identifier} => #{mcdc_pairs_for(condition_identifier).inspect}"
+      "#{condition_identifier} => #{mcdc_pairs_for(condition_identifier)}"
     end
   end
 

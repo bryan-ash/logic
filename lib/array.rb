@@ -4,4 +4,8 @@ class Array
     length
   end
 
+  def to_s
+    inspect
+  end
+
 end
