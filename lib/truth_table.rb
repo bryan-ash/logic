@@ -9,13 +9,12 @@ class TruthTable
   end
 
   def header
-    conditions = @test_cases.condition_identifiers.join(" ")
-    "#{conditions.rjust(conditions.length + 4)} | output\n"
+    "    %s | output\n" % @test_cases.condition_identifiers.join(" ")
   end
 
   def formatted_cases
     @test_cases.inject("") do |output, test_case|
-      output += "#{test_case.number.to_s.rjust(2)}) #{test_case.conditions.join(' ')} | #{test_case.output.to_s.rjust(3)}\n"
+      output += test_case.formatted("%2d) %s | %3d\n")
     end
   end
 

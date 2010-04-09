@@ -46,4 +46,8 @@ class TestCase
     self
   end
 
+  def formatted(format)
+    "%2d) %s | %3d\n" % [number, conditions.join(' '), output]
+  end
+
 end
