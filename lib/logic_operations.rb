@@ -45,9 +45,9 @@ module Decision
   end
 
   def evaluate(conditions)
-    condition_1 = operand_1.evaluate(conditions)
-    condition_2 = operand_2.evaluate(conditions)
-    operator.apply(condition_1, condition_2)
+    left  = operand_1.evaluate(conditions)
+    right = operand_2.evaluate(conditions)
+    operator.apply(left, right)
   end
 
 end
