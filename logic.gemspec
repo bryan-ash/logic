@@ -2,17 +2,16 @@ require 'rake'
 
 Gem::Specification.new do |s|
   s.name = %q{logic}
-  s.version = "0.0.4"
+  s.version = "0.0.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bryan Ash"]
-  s.date = %q{2010-04-07}
   s.default_executable = %q{logic}
   s.description = %q{Produces truth table and MC/DC test case pairs from parsed logic statement}
   s.email = %q{}
   s.executables = ["logic"]
   s.extra_rdoc_files = [ "LICENSE", "README.rdoc" ]
-  s.files = FileList['lib/**/*.rb', 'lib/**/*.treetop', 'bin/*', '[A-Z].*', 'feature/**/*', 'spec/**/*'].to_a
+  s.files = FileList['lib/**/*', 'bin/*', '[A-Z].*', 'feature/**/*', 'spec/**/*'].to_a
   s.homepage = %q{http://github.com/bryan-ash/logic}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
