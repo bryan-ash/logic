@@ -7,28 +7,28 @@ require 'treetop'
 require 'logic_parser'
 require 'logic_operations'
 
-options = {}
+options = {} 
  
-optparse = OptionParser.new do|opts|
-  opts.banner = "Usage: logic [options] <decision>"
- 
-  opts.on( '-m', '--mcdc_pairs', 'Show MC/DC test case pairs' ) do
-    options[:mcdc_pairs] = true
-  end
-  
-  opts.on( '-l', '--truth_table', 'Show the truth table for the decision' ) do
-    options[:truth_table] = true
-  end
-  
-  opts.on( '-h', '--help', 'You\'re looking at it' ) do
-    options[:help] = true
-  end
+option_parser = OptionParser.new
+
+option_parser.banner = "Usage: logic [options] <decision>"
+
+option_parser.on( '-l', '--truth_table', 'Show the truth table for the decision' ) do
+  options[:truth_table] = true
 end
 
-optparse.parse!
+option_parser.on( '-m', '--mcdc_pairs', 'Show MC/DC test case pairs' ) do
+  options[:mcdc_pairs] = true
+end
+
+option_parser.on( '-h', '--help', 'You\'re looking at it' ) do
+  options[:help] = true
+end
+
+option_parser.parse!
 
 if options[:help] or ARGV.length == 0
-  puts optparse.help
+  puts option_parser.help
   exit
 end
 
