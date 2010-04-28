@@ -10,6 +10,19 @@ Feature: MC/DC Pairs
       """
       a => [[1, 2]]
       """
+  Scenario: MC/DC pairs are not mandatory output
+    When I run logic --no-mcdc_pairs 'a'
+    Then I should not see:
+      """
+      a => [[1, 2]]
+      """
+
+  Scenario: MC/DC pairs are output by default
+    When I run logic 'a'
+    Then I should see:
+      """
+      a => [[1, 2]]
+      """
 
   Scenario: 'a and b' decision
     When I run logic --mcdc_pairs 'a and b'

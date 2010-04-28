@@ -13,6 +13,24 @@ Feature: Truth Table
        2) 1 |   1
       """
 
+  Scenario: Truth table output is not mandatory
+    When I run logic --no-truth_table 'a'
+    Then I should not see:
+      """
+          a | output
+       1) 0 |   0
+       2) 1 |   1
+      """
+
+  Scenario: Truth table is output by default
+    When I run logic 'a'
+    Then I should see:
+      """
+          a | output
+       1) 0 |   0
+       2) 1 |   1
+      """
+
   Scenario: 'a or b' decision
     When I run logic --truth_table 'a or b'
     Then I should see:

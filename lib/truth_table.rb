@@ -5,7 +5,7 @@ class TruthTable
   end
 
   def to_s
-    header + formatted_cases
+    header + formatted_cases + "\n"
   end
 
   def header

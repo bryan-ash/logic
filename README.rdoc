@@ -1,10 +1,14 @@
 = logic
 
+== Installation
+
+  gem install logic
+
 == Usage
 
-Truth tables are easy:
+By default, you get a truth table and a list of MC/DC pairs:
 
-  logic truth_table '(a or b) and (c or d)'
+  logic '(a or b) and (c or d)'
 
 Gives you:
 
@@ -25,12 +29,6 @@ Gives you:
   14) 1 1 0 1 |   1
   15) 1 1 1 0 |   1
   16) 1 1 1 1 |   1
-
-MC/DC test case pairs can also be found:
-
-  logic mcdc_pairs '(a or b) and (c or d)'
-
-Gives you:
 
   a => [[2, 10], [3, 11], [4, 12]]
   b => [[2, 6], [3, 7], [4, 8]]
