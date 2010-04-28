@@ -5,7 +5,7 @@ Feature: Truth Table
   I want to see the truth table
 
   Scenario: a single condition
-    When I run logic truth_table 'a'
+    When I run logic --truth_table 'a'
     Then I should see:
       """
           a | output
@@ -14,7 +14,7 @@ Feature: Truth Table
       """
 
   Scenario: 'a or b' decision
-    When I run logic truth_table 'a or b'
+    When I run logic --truth_table 'a or b'
     Then I should see:
       """
           a b | output
@@ -25,7 +25,7 @@ Feature: Truth Table
       """
 
   Scenario: 'a or b or c' decision
-    When I run logic truth_table 'a or b or c'
+    When I run logic --truth_table 'a or b or c'
     Then I should see:
       """
           a b c | output
@@ -40,7 +40,7 @@ Feature: Truth Table
       """
 
   Scenario: 'a and b and c' decision
-    When I run logic truth_table 'a and b and c'
+    When I run logic --truth_table 'a and b and c'
     Then I should see:
       """
           a b c | output
@@ -55,7 +55,7 @@ Feature: Truth Table
       """
 
   Scenario: '(a and b) or c' decision
-    When I run logic truth_table '(a and b) or c'
+    When I run logic --truth_table '(a and b) or c'
     Then I should see:
       """
           a b c | output

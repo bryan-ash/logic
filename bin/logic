@@ -1,61 +1,39 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift(File.dirname(__FILE__) + "/../lib")
 
+require 'optparse'
 require 'rubygems'
 require 'treetop'
 require 'logic_parser'
 require 'logic_operations'
 
-if ARGV.length == 0 || ARGV[0] == '--help' || ARGV[0] == '-h'
-  puts <<-HELP
-Usage: logic [ truth_table | mcdc_pairs ] "<decision>"'
+options = {}
+ 
+optparse = OptionParser.new do|opts|
+  opts.banner = "Usage: logic [options] <decision>"
+ 
+  opts.on( '-m', '--mcdc_pairs', 'Show MC/DC test case pairs' ) do
+    options[:mcdc_pairs] = true
+  end
+  
+  opts.on( '-l', '--truth_table', 'Show the truth table for the decision' ) do
+    options[:truth_table] = true
+  end
+  
+  opts.on( '-h', '--help', 'You\'re looking at it' ) do
+    options[:help] = true
+  end
+end
 
-Truth tables are easy:
+optparse.parse!
 
-  logic truth_table '(a or b) and (c or d)'
-
-Gives you:
-
-      a b c d | output
-   1) 0 0 0 0 |   0
-   2) 0 0 0 1 |   0
-   3) 0 0 1 0 |   0
-   4) 0 0 1 1 |   0
-   5) 0 1 0 0 |   0
-   6) 0 1 0 1 |   1
-   7) 0 1 1 0 |   1
-   8) 0 1 1 1 |   1
-   9) 1 0 0 0 |   0
-  10) 1 0 0 1 |   1
-  11) 1 0 1 0 |   1
-  12) 1 0 1 1 |   1
-  13) 1 1 0 0 |   0
-  14) 1 1 0 1 |   1
-  15) 1 1 1 0 |   1
-  16) 1 1 1 1 |   1
-
-MC/DC test case pairs can also be found:
-
-  logic mcdc_pairs '(a or b) and (c or d)'
-
-Gives you:
-
-  a => [[2, 10], [3, 11], [4, 12]]
-  b => [[2, 6], [3, 7], [4, 8]]
-  c => [[5, 7], [9, 11], [13, 15]]
-  d => [[5, 6], [9, 10], [13, 14]]
-
-HELP
-  exit 0
+if options[:help] or ARGV.length == 0
+  puts optparse.help
+  exit
 end
 
 parser = LogicParser.new
-decision = parser.parse ARGV[1]
+decision = parser.parse ARGV.join(' ')
 
-if ARGV[0] == 'truth_table'
-  puts decision.truth_table
-end
-
-if ARGV[0] == 'mcdc_pairs'
-  puts decision.mcdc_pairs
-end  
+puts decision.truth_table if options[:truth_table]
+puts decision.mcdc_pairs  if options[:mcdc_pairs]

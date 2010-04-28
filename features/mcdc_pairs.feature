@@ -5,14 +5,14 @@ Feature: MC/DC Pairs
   I want to see the MC/DC test pairs
 
   Scenario: a single condition
-    When I run logic mcdc_pairs 'a'
+    When I run logic --mcdc_pairs 'a'
     Then I should see:
       """
       a => [[1, 2]]
       """
 
   Scenario: 'a and b' decision
-    When I run logic mcdc_pairs 'a and b'
+    When I run logic --mcdc_pairs 'a and b'
     Then I should see:
       """
       a => [[2, 4]]
@@ -20,7 +20,7 @@ Feature: MC/DC Pairs
       """
 
   Scenario: 'a or b' decision
-    When I run logic mcdc_pairs 'a or b'
+    When I run logic --mcdc_pairs 'a or b'
     Then I should see:
       """
       a => [[1, 3]]
@@ -28,7 +28,7 @@ Feature: MC/DC Pairs
       """
 
   Scenario: 'a and (b or c)' decision
-    When I run logic mcdc_pairs 'a and (b or c)'
+    When I run logic --mcdc_pairs 'a and (b or c)'
     Then I should see:
       """
       a => [[2, 6], [3, 7], [4, 8]]

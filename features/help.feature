@@ -6,21 +6,12 @@ Feature: Help
 
   Scenario: No command line options shows help
     When I run logic
-    Then I should see:
-    """
-    Usage: logic [ truth_table | mcdc_pairs ] \"<decision>\"
-    """
+    Then I should see some help
 
   Scenario: --help shows help
     When I run logic --help
-    Then I should see:
-    """
-    Usage: logic [ truth_table | mcdc_pairs ] \"<decision>\"
-    """
+    Then I should see some help
 
   Scenario: -h shows help
     When I run logic -h
-    Then I should see:
-    """
-    Usage: logic [ truth_table | mcdc_pairs ] \"<decision>\"
-    """
+    Then I should see some help
