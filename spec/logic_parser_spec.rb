@@ -15,10 +15,6 @@ describe LogicParser do
       decision.condition_identifiers.should == ['Hello']
     end
 
-    it "has 1 condition" do
-      decision.condition_count.should == 1
-    end
-
   end
 
   describe "parsing 'A or B'" do
@@ -27,10 +23,6 @@ describe LogicParser do
     
     it "condition identifiers are ['A','B']" do
       decision.condition_identifiers.should == ['A','B']
-    end
-
-    it "has 2 conditions" do
-      decision.condition_count.should == 2
     end
 
   end
@@ -43,10 +35,6 @@ describe LogicParser do
       decision.condition_identifiers.should == ['A','B', 'C']
     end
 
-    it "has 3 conditions" do
-      decision.condition_count.should == 3
-    end
-
   end
 
   describe "parsing 'A and B'" do
@@ -57,10 +45,6 @@ describe LogicParser do
       decision.condition_identifiers.should == ['A','B']
     end
 
-    it "has 2 conditions" do
-      decision.condition_count.should == 2
-    end
-
   end
 
   describe "parsing 'A and B and C'" do
@@ -69,10 +53,6 @@ describe LogicParser do
     
     it "condition identifiers are ['A','B','C']" do
       decision.condition_identifiers.should == ['A','B', 'C']
-    end
-
-    it "has 3 conditions" do
-      decision.condition_count.should == 3
     end
 
   end

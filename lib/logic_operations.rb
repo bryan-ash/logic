@@ -16,10 +16,6 @@ module LogicStatement
     test_cases.mcdc_pairs
   end
 
-  def condition_count
-    condition_identifiers.count
-  end
-
 end
 
 module Condition
