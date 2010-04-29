@@ -2,21 +2,24 @@ require 'test_case'
 
 class TestCaseSet
 
-  def initialize(condition_count, decision, condition_identifiers = nil)
+  def initialize(condition_identifiers, decision)
     @condition_identifiers = condition_identifiers
-    @condition_count = condition_count
     @decision = decision
     @test_cases = create_cases
   end
 
   def create_cases
     case_numbers.map do |case_number|
-      TestCase.new(case_number, @condition_count, @decision)
+      TestCase.new(case_number, condition_count, @decision)
     end
   end
 
   def case_numbers
-    1..2**@condition_count
+    1..2**condition_count
+  end
+
+  def condition_count
+    @condition_identifiers.count
   end
 
   def input_to_condition_mapping
@@ -24,7 +27,7 @@ class TestCaseSet
   end
 
   def input_identifiers
-    identifier_range.take(@condition_count)
+    identifier_range.take(condition_count)
   end
 
   def identifier_range

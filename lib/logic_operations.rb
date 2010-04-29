@@ -5,7 +5,7 @@ require 'truth_table'
 module LogicStatement
 
   def test_cases
-    @test_cases ||= TestCaseSet.new(condition_count, self, condition_identifiers)
+    @test_cases ||= TestCaseSet.new(condition_identifiers, self)
   end
 
   def truth_table
