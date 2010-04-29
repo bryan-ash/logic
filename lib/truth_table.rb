@@ -9,7 +9,7 @@ class TruthTable
   end
 
   def header
-    "    %s | output\n" % @test_cases.condition_identifiers.join(" ")
+    "    %s | output\n" % @test_cases.input_identifiers.join(" ")
   end
 
   def formatted_cases

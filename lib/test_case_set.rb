@@ -18,7 +18,7 @@ class TestCaseSet
     1..2**@condition_count
   end
 
-  def condition_identifiers
+  def input_identifiers
     identifier_range.take(@condition_count)
   end
 
@@ -27,7 +27,7 @@ class TestCaseSet
   end
 
   def mcdc_pairs
-    condition_identifiers.map do |condition_identifier|
+    input_identifiers.map do |condition_identifier|
       "#{condition_identifier} => #{mcdc_pairs_for(condition_identifier)}"
     end
   end

@@ -6,12 +6,8 @@ describe TestCaseSet do
 
     let(:test_case_set) { TestCaseSet.new(1, nil) }
     
-    describe :condition_dentifiers do
-      
-      it "includes 'a'" do
-        test_case_set.condition_identifiers.should include('a')
-      end
-
+    it "input_dentifiers includes 'a'" do
+      test_case_set.input_identifiers.should include('a')
     end
     
     it "has 2 test cases" do
