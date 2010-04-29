@@ -4,6 +4,14 @@ Feature: Truth Table
   as an engineer
   I want to see the truth table
 
+  Scenario: input names are related to condition names
+    When I run logic Jennifer or Juliette
+    Then I should see:
+      """
+      a <= Jennifer
+      b <= Juliette
+      """
+
   Scenario: a single condition
     When I run logic --truth_table 'a'
     Then I should see:

@@ -2,7 +2,8 @@ require 'test_case'
 
 class TestCaseSet
 
-  def initialize(condition_count, decision)
+  def initialize(condition_count, decision, condition_identifiers = nil)
+    @condition_identifiers = condition_identifiers
     @condition_count = condition_count
     @decision = decision
     @test_cases = create_cases
@@ -16,6 +17,10 @@ class TestCaseSet
 
   def case_numbers
     1..2**@condition_count
+  end
+
+  def input_to_condition_mapping
+    input_identifiers.zip(@condition_identifiers)
   end
 
   def input_identifiers

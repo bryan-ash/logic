@@ -5,7 +5,13 @@ class TruthTable
   end
 
   def to_s
-    header + formatted_cases + "\n"
+    input_to_condition_maping + "\n" + header + formatted_cases + "\n"
+  end
+
+  def input_to_condition_maping
+    @test_cases.input_to_condition_mapping.inject("") do |output, input_condition_pair|
+      output += "%s <= %s\n" % [input_condition_pair[0], input_condition_pair[1]]
+    end
   end
 
   def header
