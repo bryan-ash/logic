@@ -3,56 +3,51 @@ require 'treetop'
 require 'logic_parser'
 require 'logic_operations'
 
-describe LogicParser do
+describe LogicParser, :parsing do
 
   let(:parser) { LogicParser.new }
 
-  describe "parsing a single condition" do
-    
-    let(:decision) { parser.parse('Hello') }
-    
+  describe "a single condition" do
+        
     it "identifies the condition" do
+      decision = parser.parse('Hello')
       decision.condition_identifiers.should == ['Hello']
     end
 
   end
 
-  describe "parsing 'A or B'" do
-
-    let(:decision) { parser.parse('A or B') }
+  describe "'A or B'" do
     
     it "condition identifiers are ['A','B']" do
+      decision = parser.parse('A or B')
       decision.condition_identifiers.should == ['A','B']
     end
 
   end
 
-  describe "parsing 'A or B or C'" do
-
-    let(:decision) { parser.parse('A or B or C') }
+  describe "'A or B or C'" do
     
     it "condition identifiers are ['A','B','C']" do
-      decision.condition_identifiers.should == ['A','B', 'C']
+      decision = parser.parse('A or B or C')
+      decision.condition_identifiers.should == ['A','B','C']
     end
 
   end
 
-  describe "parsing 'A and B'" do
-
-    let(:decision) { parser.parse('A and B') }
+  describe "'A and B'" do
     
     it "conditions are ['A','B']" do
+      decision = parser.parse('A and B')
       decision.condition_identifiers.should == ['A','B']
     end
 
   end
 
-  describe "parsing 'A and B and C'" do
-
-    let(:decision) { parser.parse('A and B and C') }
+  describe "'A and B and C'" do
     
     it "condition identifiers are ['A','B','C']" do
-      decision.condition_identifiers.should == ['A','B', 'C']
+      decision = parser.parse('A and B and C')
+      decision.condition_identifiers.should == ['A','B','C']
     end
 
   end
@@ -96,12 +91,11 @@ describe LogicParser do
       [0, 1, 1] => 0
     }
   }.each do |logic, cases|
-    describe "parsing '#{logic}'" do
-
-      let(:decision) { parser.parse(logic) }
+    describe "'#{logic}'" do
 
       cases.each do |conditions, result|
         it "'#{conditions}' evaluates to '#{result}'" do
+          decision = parser.parse(logic)
           decision.evaluate(conditions).should == result
         end
       end
