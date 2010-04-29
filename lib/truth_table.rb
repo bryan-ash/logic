@@ -19,9 +19,7 @@ class TruthTable
   end
 
   def formatted_cases
-    @test_cases.inject("") do |output, test_case|
-      output += test_case.formatted("%2d) %s | %3d\n")
-    end
+    @test_cases.formatted("%2d) %s | %3d\n")
   end
 
 end

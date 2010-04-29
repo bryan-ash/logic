@@ -53,8 +53,10 @@ class TestCaseSet
     @test_cases.count
   end
 
-  def inject(initial, &block)
-    @test_cases.inject(initial, &block)
+  def formatted(format)
+    @test_cases.inject("") do |output, test_case|
+      output += test_case.formatted(format)
+    end
   end
 
 end
