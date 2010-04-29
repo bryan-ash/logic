@@ -52,6 +52,12 @@ class TestCaseSet
     identifier_range.to_a.index(condition_identifier)
   end
 
+  def formatted_input_to_condition_maping(format)
+    input_to_condition_mapping.inject("") do |output, input_condition_pair|
+      output += format % input_condition_pair
+    end
+  end
+
   def formatted(format)
     @test_cases.inject("") do |output, test_case|
       output += test_case.formatted(format)
