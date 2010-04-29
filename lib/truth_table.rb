@@ -10,7 +10,7 @@ class TruthTable
 
   def input_to_condition_maping
     @test_cases.input_to_condition_mapping.inject("") do |output, input_condition_pair|
-      output += "%s <= %s\n" % [input_condition_pair[0], input_condition_pair[1]]
+      output += "%s <= %s\n" % input_condition_pair
     end
   end
 
