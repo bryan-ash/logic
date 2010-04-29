@@ -5,7 +5,9 @@ class TruthTable
   end
 
   def to_s
-    input_to_condition_maping + "\n" + table_header + formatted_cases + "\n"
+    input_to_condition_maping + "\n" +
+      table_header + "\n" +
+      formatted_cases + "\n"
   end
 
   def input_to_condition_maping
@@ -15,7 +17,7 @@ class TruthTable
   end
 
   def table_header
-    "    %s | output\n" % @test_cases.input_identifiers.join(" ")
+    "    %s | output" % @test_cases.input_identifiers.join(" ")
   end
 
   def formatted_cases

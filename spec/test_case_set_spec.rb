@@ -10,10 +10,6 @@ describe TestCaseSet do
       test_case_set.input_identifiers.should include('a')
     end
     
-    it "has 2 test cases" do
-      test_case_set.count.should == 2
-    end
-
   end
   
 end

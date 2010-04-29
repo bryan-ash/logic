@@ -49,10 +49,6 @@ class TestCaseSet
     identifier_range.to_a.index(condition_identifier)
   end
 
-  def count
-    @test_cases.count
-  end
-
   def formatted(format)
     @test_cases.inject("") do |output, test_case|
       output += test_case.formatted(format)
