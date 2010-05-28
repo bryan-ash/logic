@@ -1,4 +1,3 @@
-require 'array'
 require 'test_case_set'
 require 'truth_table'
 
@@ -85,5 +84,11 @@ end
 module Or
   def apply(a, b)
     a | b
+  end
+end
+
+module Xor
+  def apply(a, b)
+    a ^ b
   end
 end

@@ -30,6 +30,8 @@ grammar Logic
     'and' <And>
     / 
     'or' <Or>
+    / 
+    'xor' <Xor>
   end
 
   rule space

@@ -59,6 +59,17 @@ Feature: Truth Table
        4) 1 1 |   1
       """
 
+  Scenario: 'a xor b' decision
+    When I run logic --truth_table 'a xor b'
+    Then I should see:
+      """
+          a b | output
+       1) 0 0 |   0
+       2) 0 1 |   1
+       3) 1 0 |   1
+       4) 1 1 |   0
+      """
+
   Scenario: 'not a or not b' decision
     When I run logic --truth_table 'not a or not b'
     Then I should see:

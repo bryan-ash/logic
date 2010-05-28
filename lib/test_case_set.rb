@@ -1,3 +1,4 @@
+require 'array'
 require 'test_case'
 
 class TestCaseSet
