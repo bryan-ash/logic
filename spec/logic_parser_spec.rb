@@ -56,6 +56,10 @@ describe LogicParser, :parsing do
     { [0] => 0,
       [1] => 1
     },
+    '(Hello)' =>
+    { [0] => 0,
+      [1] => 1
+    },
     'not Hello' =>
     { [0] => 1,
       [1] => 0

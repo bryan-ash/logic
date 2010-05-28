@@ -1,27 +1,29 @@
 grammar Logic
 
   rule decision
-    binary / condition
+    binary_decision / unary_decision
   end
 
-  rule binary
-    operand_1:condition space operator space operand_2:decision <Decision>  
+  rule binary_decision
+    operand_1:unary_decision space 
+    operator space 
+    operand_2:decision <BinaryDecision>
+  end
+
+  rule unary_decision
+    negation / condition / parenthesized
+  end
+
+  rule negation
+    'not' space operand:unary_decision <Negation>
   end
 
   rule condition
-    parenthesized / unary / variable
-  end
-
-  rule unary
-    'not' space operand:condition <Unary>
-  end
-
-  rule variable
     [A-Za-z]+ <Condition>
   end
 
   rule parenthesized
-    '(' contents:binary ')' <Parenthesized>
+    '(' contents:decision ')' <Parenthesized>
   end
 
   rule operator

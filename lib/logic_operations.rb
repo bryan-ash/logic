@@ -8,7 +8,7 @@ class Treetop::Runtime::SyntaxNode
   end
 end
 
-module LogicStatement
+module Decision
   def test_cases
     @test_cases ||= TestCaseSet.new(condition_identifiers, self)
   end
@@ -23,7 +23,7 @@ module LogicStatement
 end
 
 module Condition
-  include LogicStatement
+  include Decision
   
   def condition_identifiers
     [text_value]
@@ -34,8 +34,8 @@ module Condition
   end
 end
 
-module Decision
-  include LogicStatement
+module BinaryDecision
+  include Decision
   
   def condition_identifiers
     elements.map(&:condition_identifiers).flatten
@@ -48,20 +48,24 @@ module Decision
   end
 end
 
-module Unary
-  include LogicStatement
+module Negation
+  include Decision
   
   def condition_identifiers
     operand.condition_identifiers
   end
 
   def evaluate(conditions)
-    1 ^ operand.evaluate(conditions)
+    negate(operand.evaluate(conditions))
+  end
+
+  def negate(value)
+    1 ^ value
   end
 end
 
 module Parenthesized
-  include LogicStatement
+  include Decision
 
   def condition_identifiers
     contents.condition_identifiers
