@@ -1,15 +1,19 @@
 grammar Logic
 
   rule decision
-    binary_condition / condition
+    binary / condition
   end
 
-  rule binary_condition
-    operand_1:condition S operator S operand_2:decision <Decision>  
+  rule binary
+    operand_1:condition space operator space operand_2:decision <Decision>  
   end
 
   rule condition
-    parenthesized / variable
+    parenthesized / unary / variable
+  end
+
+  rule unary
+    'not' space operand:condition <Unary>
   end
 
   rule variable
@@ -17,35 +21,17 @@ grammar Logic
   end
 
   rule parenthesized
-    '(' binary_condition ')' <Parenthesized>
+    '(' contents:binary ')' <Parenthesized>
   end
 
   rule operator
-    ( and / or ) <NonCondition>
+    'and' <And>
+    / 
+    'or' <Or>
   end
 
-  rule and
-    'and' {
-      def apply(a, b)
-        a & b
-      end
-    }
-  end
-
-  rule or
-    'or' {
-      def apply(a, b)
-        a | b
-      end
-    }
-  end
-
-  rule s # Optional space
-    S?
-  end
- 
-  rule S # Mandatory space
-    [ \t\n\r]+ <NonCondition>
+  rule space
+    [ \t\n\r]+
   end
  
 end

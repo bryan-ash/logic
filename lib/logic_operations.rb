@@ -2,8 +2,13 @@ require 'array'
 require 'test_case_set'
 require 'truth_table'
 
-module LogicStatement
+class Treetop::Runtime::SyntaxNode
+  def condition_identifiers
+    []
+  end
+end
 
+module LogicStatement
   def test_cases
     @test_cases ||= TestCaseSet.new(condition_identifiers, self)
   end
@@ -15,11 +20,9 @@ module LogicStatement
   def mcdc_pairs
     test_cases.mcdc_pairs
   end
-
 end
 
 module Condition
-
   include LogicStatement
   
   def condition_identifiers
@@ -29,11 +32,9 @@ module Condition
   def evaluate(conditions)
     conditions.shift
   end
-
 end
 
 module Decision
-
   include LogicStatement
   
   def condition_identifiers
@@ -45,27 +46,40 @@ module Decision
     right = operand_2.evaluate(conditions)
     operator.apply(left, right)
   end
-
 end
 
-module Parenthesized
-
+module Unary
   include LogicStatement
-
+  
   def condition_identifiers
-    binary_condition.condition_identifiers
+    operand.condition_identifiers
   end
 
   def evaluate(conditions)
-    binary_condition.evaluate(conditions)
+    1 ^ operand.evaluate(conditions)
   end
-  
 end
 
-module NonCondition
-  
+module Parenthesized
+  include LogicStatement
+
   def condition_identifiers
-    []
+    contents.condition_identifiers
   end
 
+  def evaluate(conditions)
+    contents.evaluate(conditions)
+  end
+end
+
+module And
+  def apply(a, b)
+    a & b
+  end
+end
+
+module Or
+  def apply(a, b)
+    a | b
+  end
 end

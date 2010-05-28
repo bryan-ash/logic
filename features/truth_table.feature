@@ -21,6 +21,15 @@ Feature: Truth Table
        2) 1 |   1
       """
 
+  Scenario: a negated condition
+    When I run logic --truth_table 'not a'
+    Then I should see:
+      """
+          a | output
+       1) 0 |   1
+       2) 1 |   0
+      """
+
   Scenario: Truth table output is not mandatory
     When I run logic --no-truth_table 'a'
     Then I should not see:
