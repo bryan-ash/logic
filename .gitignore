@@ -1,0 +1,6 @@
+**/.DS_Store
+**/*~
+.bundle
+rerun.txt
+tmp/**/*
+semantic.cache
