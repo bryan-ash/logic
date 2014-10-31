@@ -23,7 +23,7 @@ end
 
 module Condition
   include Decision
-  
+
   def condition_identifiers
     [text_value]
   end
@@ -35,7 +35,7 @@ end
 
 module BinaryDecision
   include Decision
-  
+
   def condition_identifiers
     elements.map(&:condition_identifiers).flatten
   end
@@ -49,7 +49,7 @@ end
 
 module Negation
   include Decision
-  
+
   def condition_identifiers
     operand.condition_identifiers
   end
