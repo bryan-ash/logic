@@ -5,8 +5,8 @@ grammar Logic
   end
 
   rule binary_decision
-    operand_1:unary_decision space 
-    operator space 
+    operand_1:unary_decision space
+    operator space
     operand_2:decision <BinaryDecision>
   end
 
@@ -15,6 +15,7 @@ grammar Logic
   end
 
   rule negation
+    space?
     'not' space operand:unary_decision <Negation>
   end
 
@@ -23,19 +24,19 @@ grammar Logic
   end
 
   rule parenthesized
-    '(' contents:decision ')' <Parenthesized>
+    '(' space? contents:decision space? ')' <Parenthesized>
   end
 
   rule operator
     'and' <And>
-    / 
+    /
     'or' <Or>
-    / 
+    /
     'xor' <Xor>
   end
 
   rule space
     [ \t\n\r]+
   end
- 
+
 end

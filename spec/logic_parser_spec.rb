@@ -42,15 +42,15 @@ describe LogicParser, :parsing do
     end
   end
 
-  { 'Hello' =>
+  { 'condition' =>
     { [0] => 0,
       [1] => 1
     },
-    '(Hello)' =>
+    '(condition)' =>
     { [0] => 0,
       [1] => 1
     },
-    'not Hello' =>
+    ' not negated' =>
     { [0] => 1,
       [1] => 0
     },
@@ -89,6 +89,12 @@ describe LogicParser, :parsing do
       [0, 0, 1] => 1
     },
     'A and (B or C)' =>
+    { [1, 0, 0] => 0,
+      [1, 1, 0] => 1,
+      [1, 0, 1] => 1,
+      [0, 1, 1] => 0
+    },
+    '( A and (B or C) )' =>
     { [1, 0, 0] => 0,
       [1, 1, 0] => 1,
       [1, 0, 1] => 1,
