@@ -10,8 +10,8 @@ require 'logic_operations'
 options = {
   :truth_table => true,
   :mcdc_pairs  => true
-} 
- 
+}
+
 option_parser = OptionParser.new
 
 option_parser.banner = "Usage: logic [options] <decision>"
