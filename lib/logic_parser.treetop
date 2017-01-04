@@ -4,8 +4,8 @@ grammar Logic
   end
 
   rule binary_decision
-    operand_1:unary_decision space
-    operator space
+    operand_1:unary_decision
+    operator
     operand_2:decision <BinaryDecision>
   end
 
@@ -14,7 +14,7 @@ grammar Logic
   end
 
   rule negation
-    ('not' / '!') space operand:unary_decision <Negation>
+    ('not' space / '!' space?) operand:unary_decision <Negation>
   end
 
   rule condition
@@ -26,11 +26,11 @@ grammar Logic
   end
 
   rule operator
-    ('and' / '&&') <And>
+    (space 'and' space / space? '&&' space?) <And>
     /
-    ('or' / '||') <Or>
+    (space 'or' space / space? '||' space?) <Or>
     /
-    ('xor' / '^') <Xor>
+    (space 'xor' space / space? '^' space?) <Xor>
   end
 
   rule space
