@@ -54,7 +54,7 @@ describe LogicParser, :parsing do
     { [0] => 0,
       [1] => 1
     },
-    ' not negated' =>
+    'not negated' =>
     { [0] => 1,
       [1] => 0
     },
@@ -73,6 +73,11 @@ describe LogicParser, :parsing do
     { [1, 1] => 1,
       [0, 1] => 0,
       [1, 0] => 0
+    },
+    'A and not B' =>
+    { [1, 1] => 0,
+      [0, 1] => 0,
+      [1, 0] => 1
     },
     'A or B or C' =>
     { [0, 0, 0] => 0,
