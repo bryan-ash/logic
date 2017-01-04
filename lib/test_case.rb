@@ -1,6 +1,5 @@
 require 'integer'
 require 'range'
-require 'symbol'
 
 class TestCase
 
