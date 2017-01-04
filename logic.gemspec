@@ -2,29 +2,23 @@ require 'rake'
 
 Gem::Specification.new do |s|
   s.name = 'logic'
-  s.version = '0.1.3'
+  s.version = '0.1.4'
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.required_rubygems_version = '>= 1.3.6'
   s.authors = ['Bryan Ash']
-  s.description = %q{Produces truth table and MC/DC test case pairs from parsed logic statement}
-  s.email = %q{}
+  s.description = 'Produces truth table and MC/DC test case pairs from parsed logic statement'
+  s.email = 'bryan.a.ash@gmail.com'
   s.bindir = 'bin'
   s.executables = ['logic']
-  s.extra_rdoc_files = [ "LICENSE", "README.rdoc" ]
+  s.extra_rdoc_files = [ 'LICENSE', 'README.rdoc' ]
   s.files = FileList['lib/**/*', 'bin/*', '[A-Z].*', 'feature/**/*', 'spec/**/*'].to_a
-  s.rdoc_options = ["--charset=UTF-8"]
+  s.rdoc_options = ['--charset=UTF-8']
   s.summary = %q{Taking the pain out of MC/DC testing}
+  s.license = 'MIT'
 
-  if s.respond_to? :specification_version then
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<treetop>, [">= 1.4.2"])
-      s.add_runtime_dependency(%q<polyglot>, [">= 0.2.9"])
-    else
-      s.add_dependency(%q<treetop>, [">= 1.4.2"])
-      s.add_dependency(%q<polyglot>, [">= 0.2.9"])
-    end
-  else
-    s.add_dependency(%q<treetop>, [">= 1.4.2"])
-    s.add_dependency(%q<polyglot>, [">= 0.2.9"])
-  end
+  s.add_runtime_dependency('treetop', '~> 1.6.8')
+
+  s.add_development_dependency('aruba', '~> 0.14.2')
+  s.add_development_dependency('cucumber', '~> 2.4.0')
+  s.add_development_dependency('rspec', '~> 3.5.0')
 end

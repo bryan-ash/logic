@@ -1,3 +1,9 @@
+PATH
+  remote: .
+  specs:
+    logic (0.1.4)
+      treetop (~> 1.6.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -50,10 +56,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aruba
-  cucumber
-  rspec
-  treetop
+  aruba (~> 0.14.2)
+  cucumber (~> 2.4.0)
+  logic!
+  rspec (~> 3.5.0)
 
 BUNDLED WITH
    1.13.0
