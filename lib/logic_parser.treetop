@@ -14,7 +14,7 @@ grammar Logic
   end
 
   rule negation
-    'not' space operand:unary_decision <Negation>
+    ('not' / '!') space operand:unary_decision <Negation>
   end
 
   rule condition
@@ -26,11 +26,11 @@ grammar Logic
   end
 
   rule operator
-    'and' <And>
+    ('and' / '&&') <And>
     /
-    'or' <Or>
+    ('or' / '||') <Or>
     /
-    'xor' <Xor>
+    ('xor' / '^') <Xor>
   end
 
   rule space
