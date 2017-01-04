@@ -4,41 +4,40 @@ require 'logic_parser'
 require 'logic_operations'
 
 describe LogicParser, :parsing do
-
   let(:parser) { LogicParser.new }
 
   describe "a single condition" do
     it "identifies the condition" do
       decision = parser.parse('Hello')
-      decision.condition_identifiers.should == ['Hello']
+      expect(decision.condition_identifiers).to eq ['Hello']
     end
   end
 
   describe "'A or B'" do
     it "condition identifiers are ['A','B']" do
       decision = parser.parse('A or B')
-      decision.condition_identifiers.should == ['A','B']
+      expect(decision.condition_identifiers).to eq ['A','B']
     end
   end
 
   describe "'A or B or C'" do
     it "condition identifiers are ['A','B','C']" do
       decision = parser.parse('A or B or C')
-      decision.condition_identifiers.should == ['A','B','C']
+      expect(decision.condition_identifiers).to eq ['A','B','C']
     end
   end
 
   describe "'A and B'" do
     it "conditions are ['A','B']" do
       decision = parser.parse('A and B')
-      decision.condition_identifiers.should == ['A','B']
+      expect(decision.condition_identifiers).to eq ['A','B']
     end
   end
 
   describe "'A and B and C'" do
     it "condition identifiers are ['A','B','C']" do
       decision = parser.parse('A and B and C')
-      decision.condition_identifiers.should == ['A','B','C']
+      expect(decision.condition_identifiers).to eq ['A','B','C']
     end
   end
 
@@ -106,11 +105,9 @@ describe LogicParser, :parsing do
       cases.each do |conditions, result|
         it "'#{conditions}' evaluates to '#{result}'" do
           decision = parser.parse(logic)
-          decision.evaluate(conditions).should == result
+          expect(decision.evaluate(conditions)).to eq result
         end
       end
     end
-
   end
-
 end
