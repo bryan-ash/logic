@@ -1,5 +1,4 @@
 grammar Logic
-
   rule decision
     binary_decision / unary_decision
   end
@@ -20,7 +19,7 @@ grammar Logic
   end
 
   rule condition
-    [A-Za-z]+ <Condition>
+    [A-Za-z_]+ <Condition>
   end
 
   rule parenthesized
@@ -38,5 +37,4 @@ grammar Logic
   rule space
     [ \t\n\r]+
   end
-
 end

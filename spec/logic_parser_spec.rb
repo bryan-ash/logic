@@ -11,6 +11,11 @@ describe LogicParser, :parsing do
       decision = parser.parse('Hello')
       expect(decision.condition_identifiers).to eq ['Hello']
     end
+
+    it 'allows underscores in the condition' do
+      decision = parser.parse('a_name')
+      expect(decision.condition_identifiers).to eq ['a_name']
+    end
   end
 
   describe "'A or B'" do
@@ -101,7 +106,6 @@ describe LogicParser, :parsing do
     }
   }.each do |logic, cases|
     describe "'#{logic}'" do
-
       cases.each do |conditions, result|
         it "'#{conditions}' evaluates to '#{result}'" do
           decision = parser.parse(logic)
