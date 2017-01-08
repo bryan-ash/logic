@@ -1,8 +1,6 @@
-require 'rake'
-
 Gem::Specification.new do |s|
   s.name = 'logic'
-  s.version = '0.1.4'
+  s.version = '0.1.5'
 
   s.required_rubygems_version = '>= 1.3.6'
   s.authors = ['Bryan Ash']
@@ -11,14 +9,14 @@ Gem::Specification.new do |s|
   s.bindir = 'bin'
   s.executables = ['logic']
   s.extra_rdoc_files = [ 'LICENSE', 'README.rdoc' ]
-  s.files = FileList['lib/**/*', 'bin/*', '[A-Z].*', 'feature/**/*', 'spec/**/*'].to_a
+  s.files = Dir.glob(['lib/**/*', 'bin/*', '[A-Z].*', 'feature/**/*', 'spec/**/*'])
   s.rdoc_options = ['--charset=UTF-8']
   s.summary = %q{Taking the pain out of MC/DC testing}
   s.license = 'MIT'
 
-  s.add_runtime_dependency('treetop', '~> 1.6.8')
+  s.add_runtime_dependency('treetop', '~> 1.6')
 
-  s.add_development_dependency('aruba', '~> 0.14.2')
-  s.add_development_dependency('cucumber', '~> 2.4.0')
-  s.add_development_dependency('rspec', '~> 3.5.0')
+  s.add_development_dependency('aruba', '~> 0.14')
+  s.add_development_dependency('cucumber', '~> 2.4')
+  s.add_development_dependency('rspec', '~> 3.5')
 end
