@@ -9,14 +9,13 @@ Gem::Specification.new do |s|
   s.bindir = 'bin'
   s.executables = ['logic']
   s.extra_rdoc_files = [ 'LICENSE', 'README.rdoc' ]
-  s.files = Dir.glob(['lib/**/*', 'bin/*', '[A-Z].*', 'feature/**/*', 'spec/**/*'])
+  s.files = Dir.glob(['lib/**/*', 'bin/*', '[A-Z].*', 'spec/**/*'])
   s.rdoc_options = ['--charset=UTF-8']
   s.summary = %q{Taking the pain out of MC/DC testing}
   s.license = 'MIT'
 
-  s.add_runtime_dependency('treetop', '~> 1.6')
+  s.add_runtime_dependency 'treetop', '~> 1.6'
 
-  s.add_development_dependency('aruba', '~> 0.14')
-  s.add_development_dependency('cucumber', '~> 2.4')
-  s.add_development_dependency('rspec', '~> 3.5')
+  s.add_development_dependency 'aruba', '~> 0.14'
+  s.add_development_dependency 'rspec', '~> 3.5'
 end
