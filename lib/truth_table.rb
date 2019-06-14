@@ -1,5 +1,4 @@
 class TruthTable
-
   def initialize(test_cases)
     @test_cases = test_cases
   end
@@ -21,5 +20,4 @@ class TruthTable
   def formatted_cases
     @test_cases.formatted("%2d) %s | %3d\n")
   end
-
 end

@@ -1,5 +1,4 @@
 class Array
-
   def count
     length
   end
@@ -7,5 +6,4 @@ class Array
   def to_s
     inspect
   end
-
 end

@@ -2,7 +2,6 @@ require 'integer'
 require 'range'
 
 class TestCase
-
   def initialize(number, condition_count, decision)
     @condition_value = number - 1
     @condition_count = condition_count
@@ -19,7 +18,7 @@ class TestCase
   end
 
   def number
-    conditions.join.to_i(base = 2) + 1
+    conditions.join.to_i(_base = 2) + 1
   end
 
   def output
@@ -48,5 +47,4 @@ class TestCase
   def formatted(format)
     "%2d) %s | %3d\n" % [number, conditions.join(' '), output]
   end
-
 end

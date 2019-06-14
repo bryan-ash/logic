@@ -2,7 +2,6 @@ require 'array'
 require 'test_case'
 
 class TestCaseSet
-
   def initialize(condition_identifiers, decision)
     @condition_identifiers = condition_identifiers
     @decision = decision
@@ -64,5 +63,4 @@ class TestCaseSet
       output += test_case.formatted(format)
     end
   end
-
 end
