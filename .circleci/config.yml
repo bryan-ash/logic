@@ -1,0 +1,72 @@
+version: 2.1
+workflows:
+  version: 2.1
+  ci:
+    jobs:
+      - bundle-install
+      - bundle-audit:
+          requires:
+            - bundle-install
+      - rspec:
+          requires:
+            - bundle-install
+
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/ruby:2.6.3
+      environment:
+        BUNDLE_JOBS: 3
+        BUNDLE_RETRY: 3
+        BUNDLE_PATH: vendor/bundle
+
+jobs:
+  bundle-install:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - restore_cache:
+          keys:
+            - v1-bundle-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - v1-bundle-{{ arch }}-{{ .Branch }}-
+            - v1-bundle-{{ arch }}-
+      - run: bundle install && bundle clean
+      - save_cache:
+          key: v1-bundle-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./vendor/bundle
+
+  bundle-audit:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run: bundle install
+      - run: mkdir -p test_results/bundle-audit
+      - run: bundle exec bundle-audit check --update
+
+  rspec:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      - run: bundle install
+      - run: mkdir test_results
+      - run:
+          name: rspec
+          command: |
+            bundle exec rspec \
+              --format RspecJunitFormatter \
+              --out test_results/rspec/results.xml \
+              --format progress \
+              spec
+      - store_test_results:
+          path: test_results
