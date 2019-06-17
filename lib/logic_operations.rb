@@ -37,13 +37,24 @@ module BinaryDecision
   include Decision
 
   def condition_identifiers
-    elements.map(&:condition_identifiers).flatten
+    elements.flat_map(&:condition_identifiers)
   end
 
   def evaluate(conditions)
-    left  = operand_1.evaluate(conditions)
-    right = operand_2.evaluate(conditions)
-    operator.apply(left, right)
+    left_value = left.evaluate(conditions)
+    return left_value unless tail.elements.any?
+
+    tail.elements.reduce(left_value) do |value, tail|
+      tail.operator.apply(value, tail.operand.evaluate(conditions))
+    end
+  end
+end
+
+module Tail
+  def condition_identifiers
+    elements.flat_map do |element|
+      element.elements.flat_map(&:condition_identifiers)
+    end
   end
 end
 

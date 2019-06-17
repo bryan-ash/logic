@@ -14,7 +14,7 @@ class TestCase
   end
 
   def conditions
-    @conditions ||= (@condition_value).to_array_of_bits(@condition_count)
+    @conditions ||= @condition_value.to_array_of_bits(@condition_count)
   end
 
   def number

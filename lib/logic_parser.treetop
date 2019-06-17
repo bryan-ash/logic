@@ -1,20 +1,36 @@
 grammar Logic
-  rule decision
-    binary_decision / unary_decision
+  rule disjunction
+    left:conjunction tail:or_tail <BinaryDecision>
   end
 
-  rule binary_decision
-    operand_1:unary_decision
-    operator
-    operand_2:decision <BinaryDecision>
+  rule conjunction
+    left:primitive tail:and_tail <BinaryDecision>
   end
 
-  rule unary_decision
+  rule and_tail
+    (operator:and operand:primitive)* <Tail>
+  end
+
+  rule or_tail
+    (operator:or operand:conjunction)* <Tail>
+  end
+
+  rule and
+    (space 'and' space / space? '&&' space?) <And>
+  end
+
+  rule or
+    (space 'or' space / space? '||' space?) <Or>
+    /
+    (space 'xor' space / space? '^' space?) <Xor>
+  end
+
+  rule primitive
     negation / condition / parenthesized
   end
 
   rule negation
-    ('not' space / '!' space?) operand:unary_decision <Negation>
+    ('not' space / '!' space?) operand:primitive <Negation>
   end
 
   rule condition
@@ -22,15 +38,7 @@ grammar Logic
   end
 
   rule parenthesized
-    '(' space? contents:decision space? ')' <Parenthesized>
-  end
-
-  rule operator
-    (space 'and' space / space? '&&' space?) <And>
-    /
-    (space 'or' space / space? '||' space?) <Or>
-    /
-    (space 'xor' space / space? '^' space?) <Xor>
+    '(' space? contents:disjunction space? ')' <Parenthesized>
   end
 
   rule space
