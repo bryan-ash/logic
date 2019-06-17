@@ -1,0 +1,53 @@
+# logic
+
+Parses logic expressions to produce a truth table and MC/DC cases.
+
+## Installation
+
+    gem install logic
+
+## Usage
+
+By default, you get a truth table and a list of MC/DC pairs:
+
+  logic '(apple or bongo) and (cat or dog)'
+
+Gives you:
+
+    a <= apple
+    b <= bongo
+    c <= cat
+    d <= dog
+
+         a b c d | output
+      1) 0 0 0 0 |   0
+      2) 0 0 0 1 |   0
+      3) 0 0 1 0 |   0
+      4) 0 0 1 1 |   0
+      5) 0 1 0 0 |   0
+      6) 0 1 0 1 |   1
+      7) 0 1 1 0 |   1
+      8) 0 1 1 1 |   1
+      9) 1 0 0 0 |   0
+     10) 1 0 0 1 |   1
+     11) 1 0 1 0 |   1
+     12) 1 0 1 1 |   1
+     13) 1 1 0 0 |   0
+     14) 1 1 0 1 |   1
+     15) 1 1 1 0 |   1
+     16) 1 1 1 1 |   1
+
+    a => [[2, 10], [3, 11], [4, 12]]
+    b => [[2, 6], [3, 7], [4, 8]]
+    c => [[5, 7], [9, 11], [13, 15]]
+    d => [[5, 6], [9, 10], [13, 14]]
+
+## Options
+
+    -l, --[no-]truth_table           Show the truth table for the decision
+    -m, --[no-]mcdc_pairs            Show MC/DC test case pairs
+
+
+## Operators
+
+The syntax understands: `and`, `&&`, `or`, `||`, `xor`, `^`, `not`, `!`, and parenthesis.
