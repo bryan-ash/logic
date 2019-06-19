@@ -8,21 +8,21 @@ grammar Logic
   end
 
   rule and_tail
-    (operator:and operand:primitive)* <Tail>
+    (operator:and_operator operand:primitive)* <Tail>
   end
 
   rule or_tail
-    (operator:or operand:conjunction)* <Tail>
+    (operator:or_operator operand:conjunction)* <Tail>
   end
 
-  rule and
-    (space 'and' space / space? '&&' space?) <And>
+  rule and_operator
+    (space and space / space? '&&' space?) <And>
   end
 
-  rule or
-    (space 'or' space / space? '||' space?) <Or>
+  rule or_operator
+    (space or space / space? '||' space?) <Or>
     /
-    (space 'xor' space / space? '^' space?) <Xor>
+    (space xor space / space? '^' space?) <Xor>
   end
 
   rule primitive
@@ -30,7 +30,7 @@ grammar Logic
   end
 
   rule negation
-    ('not' space / '!' space?) operand:primitive <Negation>
+    (not space / '!' space?) operand:primitive <Negation>
   end
 
   rule condition
@@ -39,6 +39,22 @@ grammar Logic
 
   rule parenthesized
     '(' space? contents:disjunction space? ')' <Parenthesized>
+  end
+
+  rule and
+    [aA] [nN] [dD]
+  end
+
+  rule not
+    [nN] [oO] [tT]
+  end
+
+  rule or
+    [oO] [rR]
+  end
+
+  rule xor
+    [xX] [oO] [rR]
   end
 
   rule space

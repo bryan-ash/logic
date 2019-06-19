@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'logic'
-  s.version = '1.0.0'
+  s.version = '1.0.2'
 
   s.required_rubygems_version = '>= 1.3.6'
   s.authors = ['Bryan Ash']
@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.email = 'bryan.a.ash@gmail.com'
   s.bindir = 'bin'
   s.executables = ['logic']
-  s.extra_rdoc_files = [ 'LICENSE', 'README.rdoc' ]
+  s.extra_rdoc_files = [ 'LICENSE', 'README.md' ]
   s.files = Dir.glob(['lib/**/*', 'bin/*', '[A-Z].*', 'spec/**/*'])
   s.rdoc_options = ['--charset=UTF-8']
   s.summary = %q{Taking the pain out of MC/DC testing}
